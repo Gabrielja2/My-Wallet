@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { connect } from 'react-redux';
 import saveEmail from '../actions';
+import './LoginUser.css';
 
 class LoginUser extends Component {
     state = {
@@ -32,31 +32,45 @@ class LoginUser extends Component {
     render() {
       const { email, password } = this.state;
       return (
-        <div>
-          oi, aqui é o login
-          <input
-            data-testid="email-input"
-            type="email"
-            placeholder="E-mail"
-            onChange={ this.handleChange }
-            name="email"
-            value={ email }
-          />
-          <input
-            data-testid="password-input"
-            type="password"
-            placeholder="Senha"
-            onChange={ this.handleChange }
-            name="password"
-            value={ password }
-          />
-          <button
-            disabled={ this.validarInputs() }
-            type="button"
-            onClick={ this.handleButton }
-          >
-            Entrar
-          </button>
+        <div className="container">
+          <div className="title">
+            <h1>Login</h1>
+          </div>
+          <div className="div-email">
+            <label htmlFor="email-input">
+              Email:
+              <input
+                data-testid="email-input"
+                type="email"
+                placeholder="E-mail"
+                onChange={ this.handleChange }
+                name="email"
+                value={ email }
+              />
+            </label>
+          </div>
+          <div className="div-password">
+            <label htmlFor="password-input">
+              Senha:
+              <input
+                data-testid="password-input"
+                type="password"
+                placeholder="Senha"
+                onChange={ this.handleChange }
+                name="password"
+                value={ password }
+              />
+            </label>
+          </div>
+          <div className="div-button">
+            <button
+              disabled={ this.validarInputs() }
+              type="button"
+              onClick={ this.handleButton }
+            >
+              Entrar
+            </button>
+          </div>
 
         </div>
       );
