@@ -18,6 +18,7 @@ export const requestAPI = () => async (dispatch) => {
   const array = Object.keys(json);
   const currencies = array.filter((arr) => arr !== 'USDT');
   dispatch(currencySucess(currencies));
+  // console.log(json);
   // console.log('array', array);
   // console.log('currencies', currencies);
 };
