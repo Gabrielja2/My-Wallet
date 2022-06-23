@@ -1,11 +1,8 @@
-// const UPDATE_COORDS = 'UPDATE_COORDS';
+export const SUBMIT_WALLET = 'SUBMIT_WALLET';
 
-// const actUpdateCoord = (payload) => ({ type: UPDATE_COORDS, payload });
+const saveEmail = (email) => ({
+  type: SUBMIT_WALLET,
+  payload: email,
+});
 
-// const getCoords = () => (dispatch) => {
-//   getCurrentISSLocation().then(
-//     (resp) => { dispatch(actUpdateCoord(resp.iss_position)); },
-//   );
-// };
-
-// export { actUpdateCoord, getCoords };
+export default saveEmail;
