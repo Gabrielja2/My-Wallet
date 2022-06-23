@@ -1,23 +1,22 @@
-import React, { Component } from 'react';
+/* import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import '../Components/Header.css';
+import './Header.css';
 import requestAPI from '../Services/requestAPI';
 
-class Wallet extends Component {
+class Header extends Component {
   state = {
     initialValue: 0,
     currencies: [],
   }
 
-  componentDidMount = async () => {
+  componentDidMount =() => {
     const { currencies } = this.state;
-    const retornoApi = await requestAPI();
+    const retornoApi = requestAPI();
     this.setState({
-      currencies: retornoApi.USD.codein,
+      currencies: retornoApi,
     });
     console.log(currencies);
-    console.log(retornoApi.USD.codein);
   }
 
   render() {
@@ -28,20 +27,17 @@ class Wallet extends Component {
         <div className="logo">
           {}
         </div>
-        <p
-          readOnly
+        <input
           data-testid="email-field"
-        >
-          { email }
-        </p>
-        <p
-          readOnly
+          value={ email }
+          type="email"
+        />
+        <input
           data-testid="total-field"
-        >
-          { `despesas total:${initialValue} ` }
-        </p>
+          value={ `despesas total:${initialValue} ` }
+          type="email"
+        />
         <div
-          readOnly
           className="div-currency"
           data-testid="header-currency-field"
         >
@@ -52,7 +48,7 @@ class Wallet extends Component {
   }
 }
 
-Wallet.propTypes = {
+Header.propTypes = {
   email: PropTypes.string.isRequired,
 };
 
@@ -60,4 +56,4 @@ const mapStateToProps = (state) => ({
   email: state.user.email,
 });
 
-export default connect(mapStateToProps)(Wallet);
+export default connect(mapStateToProps)(Header); */

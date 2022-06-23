@@ -32,7 +32,7 @@ class LoginUser extends Component {
     render() {
       const { email, password } = this.state;
       return (
-        <div className="container">
+        <div className="container-login">
           <div className="title">
             <h1>Login</h1>
           </div>
@@ -40,6 +40,7 @@ class LoginUser extends Component {
             <label htmlFor="email-input">
               Email:
               <input
+                className="input-login"
                 data-testid="email-input"
                 type="email"
                 placeholder="E-mail"
@@ -53,6 +54,7 @@ class LoginUser extends Component {
             <label htmlFor="password-input">
               Senha:
               <input
+                className="input-login"
                 data-testid="password-input"
                 type="password"
                 placeholder="Senha"
@@ -64,6 +66,7 @@ class LoginUser extends Component {
           </div>
           <div className="div-button">
             <button
+              className="button-login"
               disabled={ this.validarInputs() }
               type="button"
               onClick={ this.handleButton }

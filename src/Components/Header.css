@@ -1,0 +1,39 @@
+.container-header {
+  background: hsla(0, 0%, 100%, 0.322);
+  display: flex;
+  height: 50px;
+  justify-content: flex-end;
+  left: 0;
+  opacity: 0.8;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+}
+
+header > p {
+  background: hsla(0, 0%, 100%, 0.322);
+  border: none;
+  border-radius: 0.5rem;
+  color: black;
+  display: flex;
+  font-size: 2rem;
+  line-height: 200%;
+  min-width: 300px;
+  opacity: 0.8;
+  padding-inline: 1rem;
+}
+
+.logo {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/218/218390.png');
+  background-size: cover;
+  height: 50px;
+  left: 10px;
+  position: absolute;
+  width: 50px;
+}
+
+.div-currency {
+  align-items: center;
+  display: flex;
+  padding-inline: 1rem;
+}

@@ -3,7 +3,7 @@
   --font-light: hsl(0, 100%, 100%);
 }
 
-.container {
+.container-login {
   align-items: center;
   background: hsla(0, 0%, 100%, 0.322);
   border-radius: 4rem;
@@ -23,14 +23,14 @@
   width: 100%;
 }
 
-input {
+.input-login {
   border: none;
   border-radius: 0.5rem;
   line-height: 200%;
   width: 90%;
 }
 
-button {
+.button-login {
   background: hsla(236, 60%, 18%, 0.281);
   border: none;
   border-radius: 0.5rem;
@@ -39,14 +39,14 @@ button {
   width: 10rem;
 }
 
-button:hover {
+.button-login:hover {
   box-shadow: 1px 1px 5px;
   position: relative;
   top: -1px;
 }
 
 .title {
-  align-items: end;
+  align-items: flex-end;
   background-image: url('https://cdn-icons-png.flaticon.com/512/218/218390.png');
   background-size: cover;
   color: var(--font-light);
