@@ -1,27 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import '../Components/Header.css';
-import requestAPI from '../Services/requestAPI';
+import './Wallet.css';
+import { requestAPI } from '../actions';
 
 class Wallet extends Component {
-  state = {
-    initialValue: 0,
-    currencies: [],
-  }
-
   componentDidMount = async () => {
-    const { currencies } = this.state;
-    const retornoApi = await requestAPI();
-    this.setState({
-      currencies: retornoApi.USD.codein,
-    });
-    console.log(currencies);
-    console.log(retornoApi.USD.codein);
+    const { thunkFetch } = this.props;
+    thunkFetch();
   }
 
   render() {
-    const { initialValue } = this.state;
     const { email } = this.props;
     return (
       <header className="container-header">
@@ -38,7 +27,7 @@ class Wallet extends Component {
           readOnly
           data-testid="total-field"
         >
-          { `despesas total:${initialValue} ` }
+          { `despesas total:${0} ` }
         </p>
         <div
           readOnly
@@ -53,11 +42,15 @@ class Wallet extends Component {
 }
 
 Wallet.propTypes = {
+  thunkFetch: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
 });
+const mapDispatchToProps = (dispatch) => ({
+  thunkFetch: () => dispatch(requestAPI()),
+});
 
-export default connect(mapStateToProps)(Wallet);
+export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
