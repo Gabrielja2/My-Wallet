@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './Wallet.css';
 import { requestAPI } from '../actions';
 import Header from '../Components/Header';
+import Form from '../Components/Form';
 
 class Wallet extends Component {
   componentDidMount = async () => {
@@ -16,6 +17,7 @@ class Wallet extends Component {
     return (
       <div>
         <Header />
+        <Form />
       </div>
     );
   }
