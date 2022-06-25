@@ -5,32 +5,32 @@ import './Header.css';
 
 class Header extends Component {
   render() {
-    const { email } = this.props;
-    // console.log(email);
+    const { email, expenses } = this.props;
+    // console.log(expenses);
     return (
       <header className="container-header">
         <div className="logo">
           {}
         </div>
         <p
-          readOnly
           data-testid="email-field"
         >
           { email }
         </p>
-        <p
-          readOnly
+        <span>TOTAL</span>
+        <span
           data-testid="total-field"
         >
-          { `despesas total:${0} ` }
-        </p>
-        <div
-          readOnly
+          { expenses.reduce((acc, { value, currency, exchangeRates }) => (
+            acc + Number(value) * exchangeRates[currency].ask
+          ), 0).toFixed(2)}
+        </span>
+        <span
           className="div-currency"
           data-testid="header-currency-field"
         >
           BRL
-        </div>
+        </span>
       </header>
     );
   }
@@ -38,10 +38,12 @@ class Header extends Component {
 
 Header.propTypes = {
   email: PropTypes.string.isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
+  expenses: state.wallet.expenses,
 });
 
 export default connect(mapStateToProps)(Header);
