@@ -81,7 +81,9 @@ class LoginUser extends Component {
 }
 
 LoginUser.propTypes = {
-  history: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
   salvaEmail: PropTypes.func.isRequired,
 };
 

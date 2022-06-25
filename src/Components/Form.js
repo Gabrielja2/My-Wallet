@@ -7,9 +7,9 @@ import './Form.css';
 class Form extends Component {
   state = {
     id: 0,
-    currency: '',
-    method: '',
-    tag: '',
+    currency: 'USD',
+    method: 'Dinheiro',
+    tag: 'Alimentação',
     description: '',
     value: '',
     // exchangeRates: {},
@@ -26,9 +26,9 @@ class Form extends Component {
     salvaExpenses(this.state);
     this.setState((prev) => ({
       id: prev.id + 1,
-      currency: '',
-      method: '',
-      tag: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: prev.tag,
       description: '',
       value: '',
       // exchangeRates: {},
