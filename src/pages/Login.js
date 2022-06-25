@@ -3,14 +3,10 @@ import PropTypes from 'prop-types';
 import LoginUser from '../Components/LoginUser';
 
 class Login extends React.Component {
-  carteira = (rota) => {
-    const { history } = this.props;
-    history.push(rota);
-  }
-
   render() {
+    const { history } = this.props;
     return (
-      <LoginUser carteira={ this.carteira } />
+      <LoginUser history={ history } />
     );
   }
 }

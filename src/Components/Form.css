@@ -1,0 +1,13 @@
+.form {
+  background: hsla(0, 0%, 100%, 0.322);
+  display: flex;
+  font-size: 1.8rem;
+  justify-content: space-between;
+  left: 0;
+  line-height: 200%;
+  opacity: 0.6;
+  padding: 2rem;
+  position: absolute;
+  top: 56px;
+  width: 100%;
+}

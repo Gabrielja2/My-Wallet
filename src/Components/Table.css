@@ -1,0 +1,25 @@
+.div-table {
+  border: 2px hsl(98, 100%, 50%) solid;
+  display: flex;
+  justify-content: space-evenly;
+  left: 0;
+  line-height: 200%;
+  position: absolute;
+  top: 130px;
+  width: 100%;
+}
+
+.table {
+
+  /* border: 2px blue solid; */
+  display: flex;
+  width: 100%;
+}
+
+.table-head {
+
+  /* border: 2px black solid; */
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}

@@ -1,16 +1,30 @@
 export const SUBMIT_WALLET = 'SUBMIT_WALLET';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
+export const SUBMIT_EXPENSES = 'SUBMIT_EXPENSES';
+
 const END_POINT = 'https://economia.awesomeapi.com.br/json/all';
+
+export const saveEmail = (email) => ({
+  type: SUBMIT_WALLET,
+  email,
+});
 
 export const currencySucess = (currencies) => ({
   type: FETCH_SUCCESS,
   currencies,
 });
 
-export const saveEmail = (email) => ({
-  type: SUBMIT_WALLET,
-  email,
+export const createExpense = (expenses) => ({
+  type: SUBMIT_EXPENSES,
+  expenses,
 });
+
+export const saveExpenses = (expense) => async (dispatch) => {
+  const response = await fetch(END_POINT);
+  const exchangeRates = await response.json();
+  const newExpense = { ...expense, exchangeRates };
+  dispatch(createExpense(newExpense));
+};
 
 export const requestAPI = () => async (dispatch) => {
   const response = await fetch(END_POINT);

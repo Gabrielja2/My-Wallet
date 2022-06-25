@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import './Wallet.css';
 import { requestAPI } from '../actions';
 import Header from '../Components/Header';
 import Form from '../Components/Form';
+import Table from '../Components/Table';
 
 class Wallet extends Component {
   componentDidMount = async () => {
@@ -18,6 +18,7 @@ class Wallet extends Component {
       <div>
         <Header />
         <Form />
+        <Table />
       </div>
     );
   }

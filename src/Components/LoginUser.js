@@ -23,10 +23,10 @@ class LoginUser extends Component {
     }
 
     handleButton = () => {
-      const { salvaEmail, carteira } = this.props;
+      const { salvaEmail, history } = this.props;
       const { email } = this.state;
       salvaEmail(email);
-      carteira('/carteira');
+      history.push('/carteira');
     }
 
     render() {
@@ -80,13 +80,13 @@ class LoginUser extends Component {
     }
 }
 
+LoginUser.propTypes = {
+  history: PropTypes.func.isRequired,
+  salvaEmail: PropTypes.func.isRequired,
+};
+
 const mapDispatchToProps = (dispatch) => ({
   salvaEmail: (email) => dispatch(saveEmail(email)),
 });
-
-LoginUser.propTypes = {
-  carteira: PropTypes.func.isRequired,
-  salvaEmail: PropTypes.func.isRequired,
-};
 
 export default connect(null, mapDispatchToProps)(LoginUser);
