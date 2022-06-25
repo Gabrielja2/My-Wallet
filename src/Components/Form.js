@@ -132,9 +132,6 @@ class Form extends Component {
             Adicionar despesa
           </button>
         </div>
-        <div>
-          { ' ' }
-        </div>
       </form>
     );
   }
