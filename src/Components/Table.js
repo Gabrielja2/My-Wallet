@@ -10,10 +10,10 @@ class Table extends Component {
     dispatchDelExpense(id);
   };
 
-  findCurrency(array, currency, key) {
-    // console.log(Object.entries(array).find((item) => item[0] === currency)[1]);
-    return Object.entries(array).find((item) => item[0] === currency)[1][key];
-  }
+  // findCurrency(array, currency, key) {
+  //   // console.log(Object.entries(array).find((item) => item[0] === currency)[1]);
+  //   return Object.entries(array).find((item) => item[0] === currency)[1][key];
+  // }
 
   render() {
     const { expenses } = this.props;
@@ -53,21 +53,14 @@ class Table extends Component {
                   <td>{Number(value).toFixed(2)}</td>
                   <td>
                     {
-                      this.findCurrency(exchangeRates, currency, 'name').split(
-                        '/',
-                      )[0]
+                      exchangeRates[currency].name.split('/')[0]
                     }
                   </td>
                   <td>
-                    {Number(
-                      this.findCurrency(exchangeRates, currency, 'ask'),
-                    ).toFixed(2)}
+                    {Number(exchangeRates[currency].ask).toFixed(2)}
                   </td>
                   <td>
-                    {(
-                      Number(value)
-                      * Number(this.findCurrency(exchangeRates, currency, 'ask'))
-                    ).toFixed(2)}
+                    {(Number(value) * Number(exchangeRates[currency].ask)).toFixed(2)}
                   </td>
                   <td>Real</td>
                   <td>
