@@ -20,10 +20,9 @@ export const createExpense = (expenses) => ({
   expenses,
 });
 
-export const deleteExpense = ({ id, description }) => ({
+export const deleteExpense = (id) => ({
   type: DELETE_EXPENSE,
   id,
-  description,
 });
 
 // export const removerExpense = ({ id, description }) => async (dispatch) => {
