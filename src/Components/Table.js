@@ -35,18 +35,18 @@ class Table extends Component {
           </thead>
         </table>
         <table className="table">
-          {expenses.map(
-            ({
-              id,
-              description,
-              tag,
-              method,
-              value,
-              exchangeRates,
-              currency,
-            }) => (
-              <tbody key={ id }>
-                <tr className="div-tr">
+          <tbody>
+            {expenses.map(
+              ({
+                id,
+                description,
+                tag,
+                method,
+                value,
+                exchangeRates,
+                currency,
+              }) => (
+                <tr key={ id } className="div-tr">
                   <td>{description}</td>
                   <td>{tag}</td>
                   <td>{method}</td>
@@ -72,9 +72,9 @@ class Table extends Component {
                     </button>
                   </td>
                 </tr>
-              </tbody>
-            ),
-          )}
+              ),
+            )}
+          </tbody>
         </table>
       </div>
     );
