@@ -1,6 +1,7 @@
 export const SUBMIT_WALLET = 'SUBMIT_WALLET';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
 export const SUBMIT_EXPENSES = 'SUBMIT_EXPENSES';
+export const DELETE_EXPENSE = 'DELETE_EXPENSE';
 
 const END_POINT = 'https://economia.awesomeapi.com.br/json/all';
 
@@ -19,12 +20,17 @@ export const createExpense = (expenses) => ({
   expenses,
 });
 
-export const saveExpenses = (expense) => async (dispatch) => {
-  const response = await fetch(END_POINT);
-  const exchangeRates = await response.json();
-  const newExpense = { ...expense, exchangeRates };
-  dispatch(createExpense(newExpense));
-};
+export const deleteExpense = ({ id, description }) => ({
+  type: DELETE_EXPENSE,
+  id,
+  description,
+});
+
+// export const removerExpense = ({ id, description }) => async (dispatch) => {
+//   const response = await fetch(END_POINT);
+//   const exchangeRates = await response.json();
+//   dispatch(deleteExpense());
+// }
 
 export const requestAPI = () => async (dispatch) => {
   const response = await fetch(END_POINT);
@@ -35,4 +41,11 @@ export const requestAPI = () => async (dispatch) => {
   // console.log(json);
   // console.log('array', array);
   // console.log('currencies', currencies);
+};
+
+export const saveExpenses = (expense) => async (dispatch) => {
+  const response = await fetch(END_POINT);
+  const exchangeRates = await response.json();
+  const newExpense = { ...expense, exchangeRates };
+  dispatch(createExpense(newExpense));
 };

@@ -4,15 +4,18 @@ import PropTypes from 'prop-types';
 import { saveExpenses } from '../actions';
 import './Form.css';
 
+const INITIAL_STATE = {
+  id: 0,
+  currency: 'USD',
+  method: 'Dinheiro',
+  tag: 'Alimentação',
+  description: '',
+  value: '',
+};
+
 class Form extends Component {
   state = {
-    id: 0,
-    currency: 'USD',
-    method: 'Dinheiro',
-    tag: 'Alimentação',
-    description: '',
-    value: '',
-    // exchangeRates: {},
+    ...INITIAL_STATE,
   }
 
   handleChange = ({ target }) => {
@@ -24,15 +27,7 @@ class Form extends Component {
     event.preventDefault();
     const { salvaExpenses } = this.props;
     salvaExpenses(this.state);
-    this.setState((prev) => ({
-      id: prev.id + 1,
-      currency: 'USD',
-      method: 'Dinheiro',
-      tag: prev.tag,
-      description: '',
-      value: '',
-      // exchangeRates: {},
-    }));
+    this.setState(({ id }) => ({ ...INITIAL_STATE, id: id + 1 }));
   }
 
   render() {
@@ -78,14 +73,8 @@ class Form extends Component {
               value={ currency }
               onChange={ this.handleChange }
             >
-              { currencies.map(
-                (curr) => (
-                  <option
-                    key={ curr }
-                  >
-                    { curr }
-                  </option>),
-              )}
+              { currencies.map((curr) => (
+                <option key={ curr }>{ curr }</option>))}
             </select>
           </label>
         </div>
@@ -139,13 +128,11 @@ class Form extends Component {
 
 Form.propTypes = {
   currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
-  // expenses: PropTypes.arrayOf(PropTypes.string).isRequired,
   salvaExpenses: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   currencies: state.wallet.currencies,
-  // expenses: state.wallet.expenses,
 });
 
 const mapDispatchToProps = (dispatch) => ({

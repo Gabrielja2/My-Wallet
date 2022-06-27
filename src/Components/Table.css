@@ -15,3 +15,8 @@ th , td {
   text-align: center;
   width: 100px;
 }
+
+.close-circle-outline {
+  background: hsla(236, 60%, 18%, 0);
+  border: none;
+}

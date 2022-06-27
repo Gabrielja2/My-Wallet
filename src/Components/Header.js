@@ -7,6 +7,14 @@ class Header extends Component {
   render() {
     const { email, expenses } = this.props;
     // console.log(expenses);
+    const calc = expenses.reduce((acc, expense) => {
+      const { value, currency, exchangeRates } = expense;
+      const { ask } = exchangeRates[currency];
+
+      acc += Number(value * ask);
+      return acc;
+    }, 0).toFixed(2);
+
     return (
       <header className="container-header">
         <div className="logo">
@@ -21,9 +29,7 @@ class Header extends Component {
         <span
           data-testid="total-field"
         >
-          { expenses.reduce((acc, { value, currency, exchangeRates }) => (
-            acc + Number(value) * exchangeRates[currency].ask
-          ), 0).toFixed(2)}
+          { calc }
         </span>
         <span
           className="div-currency"

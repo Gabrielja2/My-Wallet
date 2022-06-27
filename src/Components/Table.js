@@ -2,9 +2,18 @@ import React, { Component } from 'react';
 import './Table.css';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { deleteExpense } from '../actions';
 
 class Table extends Component {
-  queryCurrency(array, currency, key) {
+  handleClick = () => {
+    const { dispatchDelExpense, expenses } = this.props;
+    const { id } = expenses[0];
+    console.log('id', id);
+    console.log('expenses', expenses);
+    dispatchDelExpense(id);
+  }
+
+  findCurrency(array, currency, key) {
     // console.log(Object.entries(array).find((item) => item[0] === currency));
     return Object.entries(array).find((item) => item[0] === currency)[1][key];
   }
@@ -29,34 +38,40 @@ class Table extends Component {
           </thead>
         </table>
         <table className="table">
-          {expenses.map((exp) => (
-            <tbody key={ exp.id }>
+          {expenses.map(({
+            id, description, tag,
+            method, value, exchangeRates, currency,
+          }) => (
+            <tbody key={ id }>
               <tr className="div-tr">
-                <td>{exp.description}</td>
-                <td>{exp.tag}</td>
-                <td>{exp.method}</td>
-                <td>{Number(exp.value).toFixed(2)}</td>
+                <td>{description}</td>
+                <td>{tag}</td>
+                <td>{method}</td>
+                <td>{Number(value).toFixed(2)}</td>
                 <td>
-                  {this.queryCurrency(
-                    exp.exchangeRates, exp.currency, 'name',
-                  ).split('/')[0]}
+                  {this.findCurrency(exchangeRates, currency, 'name').split('/')[0]}
                 </td>
                 <td>
-                  {Number(this.queryCurrency(
-                    exp.exchangeRates, exp.currency, 'ask',
-                  )).toFixed(2)}
-
+                  {Number(this.findCurrency(exchangeRates, currency, 'ask')).toFixed(2)}
                 </td>
                 <td>
-                  {(Number(exp.value) * Number(
-                    this.queryCurrency(exp.exchangeRates, exp.currency, 'ask'),
-                  ))
-                    .toFixed(2)}
+                  {(Number(value) * Number(this.findCurrency(
+                    exchangeRates, currency, 'ask',
+                  ))).toFixed(2)}
                 </td>
                 <td>
                   Real
                 </td>
-                <td>btn</td>
+                <td>
+                  <button
+                    data-testid="delete-btn"
+                    className="close-circle-outline"
+                    type="button"
+                    onClick={ this.handleClick }
+                  >
+                    <ion-icon name="trash" />
+                  </button>
+                </td>
               </tr>
             </tbody>
           ))}
@@ -68,10 +83,15 @@ class Table extends Component {
 
 Table.propTypes = {
   expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
+  dispatchDelExpense: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   expenses: state.wallet.expenses,
 });
 
-export default connect(mapStateToProps)(Table);
+const mapDispatchToProps = (dispatch) => ({
+  dispatchDelExpense: (id, description) => dispatch(deleteExpense({ id, description })),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Table);
