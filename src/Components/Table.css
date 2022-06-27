@@ -16,7 +16,7 @@ th , td {
   width: 100px;
 }
 
-.close-circle-outline {
+.trash , .create {
   background: hsla(236, 60%, 18%, 0);
   border: none;
 }

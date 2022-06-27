@@ -63,8 +63,16 @@ class Table extends Component {
                   <td>Real</td>
                   <td>
                     <button
+                      data-testid="edit-btn"
+                      className="create"
+                      type="button"
+                      onClick={ null }
+                    >
+                      <ion-icon name="create" />
+                    </button>
+                    <button
                       data-testid="delete-btn"
-                      className="close-circle-outline"
+                      className="trash"
                       type="button"
                       onClick={ () => this.handleClick(id) }
                     >
