@@ -25,12 +25,6 @@ export const deleteExpense = (id) => ({
   id,
 });
 
-// export const removerExpense = ({ id, description }) => async (dispatch) => {
-//   const response = await fetch(END_POINT);
-//   const exchangeRates = await response.json();
-//   dispatch(deleteExpense());
-// }
-
 export const requestAPI = () => async (dispatch) => {
   const response = await fetch(END_POINT);
   const json = await response.json();

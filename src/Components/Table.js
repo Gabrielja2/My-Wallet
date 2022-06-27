@@ -33,8 +33,6 @@ class Table extends Component {
               <th>Editar/Excluir</th>
             </tr>
           </thead>
-        </table>
-        <table className="table">
           <tbody>
             {expenses.map(
               ({
