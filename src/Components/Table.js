@@ -2,13 +2,18 @@ import React, { Component } from 'react';
 import './Table.css';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { deleteExpense } from '../actions';
+import { deleteExpense, editExpense } from '../actions';
 
 class Table extends Component {
-  handleClick = (id) => {
-    const { dispatchDelExpense } = this.props;
-    dispatchDelExpense(id);
+  handleDelete = (id) => {
+    const { actionDelExpense } = this.props;
+    actionDelExpense(id);
   };
+
+  handleEdit = (id, expense) => {
+    const { actionEditExpense } = this.props;
+    actionEditExpense(id, expense);
+  }
 
   // findCurrency(array, currency, key) {
   //   // console.log(Object.entries(array).find((item) => item[0] === currency)[1]);
@@ -64,7 +69,8 @@ class Table extends Component {
                       data-testid="edit-btn"
                       className="create"
                       type="button"
-                      onClick={ null }
+                      onClick={ () => this.handleEdit(id, {
+                        id, value, description, currency, method, tag, exchangeRates }) }
                     >
                       <ion-icon name="create" />
                     </button>
@@ -72,7 +78,7 @@ class Table extends Component {
                       data-testid="delete-btn"
                       className="trash"
                       type="button"
-                      onClick={ () => this.handleClick(id) }
+                      onClick={ () => this.handleDelete(id) }
                     >
                       <ion-icon name="trash" />
                     </button>
@@ -89,7 +95,8 @@ class Table extends Component {
 
 Table.propTypes = {
   expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
-  dispatchDelExpense: PropTypes.func.isRequired,
+  actionDelExpense: PropTypes.func.isRequired,
+  actionEditExpense: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -97,7 +104,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchDelExpense: (id) => dispatch(deleteExpense(id)),
+  actionDelExpense: (id) => dispatch(deleteExpense(id)),
+  actionEditExpense: (idToEdit, expense) => dispatch(editExpense(idToEdit, expense)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

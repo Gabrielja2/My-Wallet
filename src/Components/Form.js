@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { saveExpenses } from '../actions';
+import { saveExpenses, updateExpense } from '../actions';
 import './Form.css';
 
 const INITIAL_STATE = {
@@ -25,14 +25,21 @@ class Form extends Component {
 
   handleClick = (event) => {
     event.preventDefault();
-    const { salvaExpenses } = this.props;
-    salvaExpenses(this.state);
-    this.setState(({ id }) => ({ ...INITIAL_STATE, id: id + 1 }));
+    const { salvaExpenses, editor } = this.props;
+    if (editor) {
+      const { expenseToEdit, actionExpenseUpdate, idToEdit: id } = this.props;
+      actionExpenseUpdate({ ...expenseToEdit, ...this.state, id,
+      });
+      this.setState({ ...INITIAL_STATE });
+    } else {
+      salvaExpenses(this.state);
+      this.setState(({ id }) => ({ ...INITIAL_STATE, id: id + 1 }));
+    }
   }
 
   render() {
-    const { currencies } = this.props;
     const { currency, method, tag, description, value } = this.state;
+    const { currencies, editor } = this.props;
     return (
       <form onSubmit={ this.handleClick } className="form">
         <div className="div-number">
@@ -118,7 +125,7 @@ class Form extends Component {
           <button
             type="submit"
           >
-            Adicionar despesa
+            {editor ? 'Editar despesa' : 'Adicionar despesa'}
           </button>
         </div>
       </form>
@@ -129,14 +136,32 @@ class Form extends Component {
 Form.propTypes = {
   currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
   salvaExpenses: PropTypes.func.isRequired,
+  actionExpenseUpdate: PropTypes.func.isRequired,
+  editor: PropTypes.bool.isRequired,
+  expenseToEdit: PropTypes.shape({
+    description: PropTypes.string,
+    id: PropTypes.number,
+    tag: PropTypes.string,
+    method: PropTypes.string,
+    value: PropTypes.string,
+  }),
+  idToEdit: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   currencies: state.wallet.currencies,
+  editor: state.wallet.editor,
+  idToEdit: state.wallet.idToEdit,
+  expenseToEdit: state.wallet.expenseToEdit,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   salvaExpenses: (expenses) => dispatch(saveExpenses(expenses)),
+  actionExpenseUpdate: (expense) => dispatch(updateExpense(expense)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);
+
+Form.defaultProps = {
+  expenseToEdit: {},
+};
