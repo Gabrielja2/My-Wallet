@@ -26,12 +26,14 @@ class Form extends Component {
   handleClick = (event) => {
     event.preventDefault();
     const { salvaExpenses, editor } = this.props;
+    // Caso a variavel editor seja verdadeira ele vai seguir o fluxo de updated
     if (editor) {
+      // Esse é o fluxo de update
       const { expenseToEdit, actionExpenseUpdate, idToEdit: id } = this.props;
-      actionExpenseUpdate({ ...expenseToEdit, ...this.state, id,
-      });
+      actionExpenseUpdate({ ...expenseToEdit, ...this.state, id });
       this.setState({ ...INITIAL_STATE });
     } else {
+    // Esse é o fluxo de cadastro
       salvaExpenses(this.state);
       this.setState(({ id }) => ({ ...INITIAL_STATE, id: id + 1 }));
     }
@@ -134,19 +136,13 @@ class Form extends Component {
 }
 
 Form.propTypes = {
-  currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
-  salvaExpenses: PropTypes.func.isRequired,
-  actionExpenseUpdate: PropTypes.func.isRequired,
-  editor: PropTypes.bool.isRequired,
-  expenseToEdit: PropTypes.shape({
-    description: PropTypes.string,
-    id: PropTypes.number,
-    tag: PropTypes.string,
-    method: PropTypes.string,
-    value: PropTypes.string,
-  }),
-  idToEdit: PropTypes.number.isRequired,
-};
+  currencies: PropTypes.string,
+  salvaExpenses: PropTypes.func,
+  actionExpenseUpdate: PropTypes.func,
+  editor: PropTypes.bool,
+  expenseToEdit: PropTypes.object,
+  idToEdit: PropTypes.number,
+}.isRequired;
 
 const mapStateToProps = (state) => ({
   currencies: state.wallet.currencies,
@@ -161,7 +157,3 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);
-
-Form.defaultProps = {
-  expenseToEdit: {},
-};

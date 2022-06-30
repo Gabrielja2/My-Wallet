@@ -7,7 +7,6 @@ const INITIAL_STATE = {
   expenses: [],
   editor: false,
   idToEdit: 0,
-
 };
 
 const wallet = (state = INITIAL_STATE, action) => {
@@ -43,8 +42,6 @@ const wallet = (state = INITIAL_STATE, action) => {
         }
         return item;
       }),
-      expenseToEdit: {},
-      editor: false,
     };
   default:
     return state;

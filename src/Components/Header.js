@@ -7,7 +7,7 @@ class Header extends Component {
   render() {
     const { email, expenses } = this.props;
     // console.log(expenses);
-    const calc = expenses.reduce((acc, expense) => {
+    const result = expenses.reduce((acc, expense) => {
       const { value, currency, exchangeRates } = expense;
       const { ask } = exchangeRates[currency];
 
@@ -29,7 +29,7 @@ class Header extends Component {
         <span
           data-testid="total-field"
         >
-          { calc }
+          { result }
         </span>
         <span
           className="div-currency"
