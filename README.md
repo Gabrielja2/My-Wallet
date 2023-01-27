@@ -3,7 +3,7 @@
 
 <strong>👨‍💻 O que foi desenvolvido</strong><br />
     Aqui você vai encontrar os detalhes de como foi estruturado este projeto e instruções para rodar.<br />
-    Neste projeto você vai desenvolver uma carteira de controle de gastos com conversor de moedas, ao utilizar essa aplicação um usuário deverá ser capaz de:
+    NFoi desenvolvido uma carteira de controle de gastos com conversor de moedas, ao utilizar essa aplicação um usuário deverá ser capaz de:
 
   - Adicionar, remover e editar um gasto;
   - Visualizar uma tabelas com seus gastos;
@@ -14,7 +14,7 @@
 <details>
   <summary><strong>:memo: Habilidades</strong></summary><br />
 
-Neste projeto, verificamos se você é capaz de:
+Neste projeto, reforçamos nossa capacidade de:
 
 - Criar um _store_ Redux em aplicações React
 
