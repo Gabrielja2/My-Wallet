@@ -3,7 +3,7 @@
 
 <strong>👨‍💻 O que foi desenvolvido</strong><br />
     Aqui você vai encontrar os detalhes de como foi estruturado este projeto e instruções para rodar.<br />
-    NFoi desenvolvido uma carteira de controle de gastos com conversor de moedas, ao utilizar essa aplicação um usuário deverá ser capaz de:
+    Foi desenvolvido uma carteira de controle de gastos com conversor de moedas, ao utilizar essa aplicação um usuário deverá ser capaz de:
 
   - Adicionar, remover e editar um gasto;
   - Visualizar uma tabelas com seus gastos;
